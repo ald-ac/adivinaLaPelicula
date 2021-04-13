@@ -1,0 +1,59 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.header {
+    background-color: #90AFC5;
+    color: #2A3132;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.p {
+    background-color: #336B87;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    margin-bottom: 15px;
+    border: 5px solid #2A3132;
+    font-size: 15pt;
+    font-weight: 600;
+}
+
+.p > p, label, input {
+    margin: 10px 10px;
+}
+
+.p > p {
+    text-align: center;
+}
+
+.p > input {
+    font-size: 15pt;
+    border: none;
+    padding: 5px 5px;
+}
+
+.btnEnviar {
+    width: 100%;
+    border: none;
+    padding: 15px 10px;
+    margin-bottom: 15px;
+    background-color: #2A3132;
+    color: #ffffff;
+    font-size: 14pt;
+    width: 510px;
+}
