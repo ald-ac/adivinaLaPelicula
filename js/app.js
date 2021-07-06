@@ -1,12 +1,19 @@
 //Selectores
 const formulario = document.querySelector('#formulario');
+const preguntas = document.querySelector('#preguntas');
+const btnReiniciar = document.querySelector('#reiniciar');
 
 //Listeners
 document.addEventListener('DOMContentLoaded', cargarPreguntas);
+formulario.addEventListener('submit', comprobarRespuestas);
+btnReiniciar.addEventListener('click', reiniciarJuego);
+
+//Variables
+let preguntasHTML = [];
 
 //Funciones
 function cargarPreguntas() {
-    let divContainer = document.createElement('div');
+    let fragment = document.createDocumentFragment();
 
     for (let i = 0; i < respuestas.length; i++) {
         let divPregunta = document.createElement('div');
@@ -14,28 +21,33 @@ function cargarPreguntas() {
         divPregunta.innerHTML = `
             <p>${emojis[i]}</p>
             <label for="r${i}">Nombre de la pelicula: </label>
-            <input type="text" name="r${i}" id="r${i}">
+            <input type="text" name="r${i}" id="r${i}" class="respuestas">
         `;
-        divContainer.appendChild(divPregunta);
+        fragment.appendChild(divPregunta);
+        preguntasHTML[i] = divPregunta;
     }
+    preguntas.appendChild(fragment);
 
-    formulario.appendChild(divContainer);
+    //Seleccionar inputs del DOM
+    const preguntasDOM = document.getElementsByClassName('respuestas');
+    preguntasHTML = [...preguntasDOM];
 }
 
-// const r1 = document.querySelector('#r1');
-// const r2 = document.querySelector('#r2');
-// const r3 = document.querySelector('#r3');
-// const r4 = document.querySelector('#r4');
-// const r5 = document.querySelector('#r5');
-// const r6 = document.querySelector('#r6');
-// const r7 = document.querySelector('#r7');
-// const btnReiniciar = document.querySelector('#reiniciar');
+function comprobarRespuestas(e) {
+    e.preventDefault();
+    
+    preguntasHTML.some(pregunta => {
+        if(pregunta.value === '') {
+            alert('¡Contesta todas las preguntas!');
+            return true;
+        }
+    });
+}
 
-// const formulario = document.querySelector('#formulario');
-
-// formulario.addEventListener('submit', recibirRespuestas);
-
-// btnReiniciar.addEventListener('click', reiniciarJuego);
+function reiniciarJuego() {
+    location.reload();
+    formulario.reset();
+}
 
 // function recibirRespuestas(e) {
 //     e.preventDefault();
@@ -107,7 +119,3 @@ function cargarPreguntas() {
 //     alert('¡Has acertado ' + aciertos + ' de 7!');
 // }
 
-// function reiniciarJuego() {
-//     location.reload();
-//     formulario.reset();
-// }
