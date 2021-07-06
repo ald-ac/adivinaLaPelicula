@@ -5,7 +5,7 @@ const btnReiniciar = document.querySelector('#reiniciar');
 
 //Listeners
 document.addEventListener('DOMContentLoaded', cargarPreguntas);
-formulario.addEventListener('submit', comprobarRespuestas);
+formulario.addEventListener('submit', validarRespuestas);
 btnReiniciar.addEventListener('click', reiniciarJuego);
 
 //Variables
@@ -33,17 +33,16 @@ function cargarPreguntas() {
     preguntasHTML = [...preguntasDOM];
 }
 
-function comprobarRespuestas(e) {
+function validarRespuestas(e) {
     e.preventDefault();
     
-    preguntasHTML.some(pregunta => {
+    const error = preguntasHTML.some(pregunta => {
         if(pregunta.value === '') {
-            alert('¡Contesta todas las preguntas!');
             return true;
-        } else {
-            comprobarRespuestas();
         }
     });
+
+    error ? alert('¡Contesta todas las preguntas!') : comprobarRespuestas();
 }
 
 function comprobarRespuestas() {
@@ -51,7 +50,7 @@ function comprobarRespuestas() {
     for (let i = 0; i < respuestas.length; i++) {
         if(respuestas[i] === preguntasHTML[i].value.toUpperCase().trim()) {
             preguntasHTML[i].style.backgroundColor = 'green';
-            preguntasHTML[i].r1.style.color = '#ffffff';
+            preguntasHTML[i].style.color = '#ffffff';
             aciertos++; 
         } else {
             preguntasHTML[i].style.backgroundColor = 'red';
