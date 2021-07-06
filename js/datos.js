@@ -8,7 +8,7 @@ let emojis = [
     '&#128104;&#127995;&#128141;&#128141;&#128141;',
     '&#128059;&#128684;&#127866;&#127866;'
 ]
-
+//Nombre de pelicula en mayuscula para efectos de comparacion
 let respuestas = [
     'HARRY POTTER',
     'KUNG FU PANDA',
